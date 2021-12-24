@@ -1,7 +1,5 @@
 package com.sai.shortening.service.serviceImpl;
 
-import java.net.InetAddress;
-import java.net.UnknownHostException;
 import java.nio.charset.StandardCharsets;
 import java.time.LocalDateTime;
 
@@ -39,23 +37,6 @@ public class MappingServiceImpl implements MappingService
 	@Override
 	public String formShortURL(String hash)
 	{
-		String host = null;
-		try
-		{
-			host = InetAddress.getLocalHost().getHostName();
-		}
-		catch (UnknownHostException e)
-		{
-			host = "localhost";
-			e.printStackTrace();
-		}
-		
-		StringBuilder shortURLBuilder = new StringBuilder();
-		shortURLBuilder.append("https://");
-		shortURLBuilder.append(host);
-//		shortURLBuilder.append(":8071");
-		shortURLBuilder.append("/"+hash);
-		
-		return shortURLBuilder.toString();
+		return new String("https://ll-redirect-service.herokuapp.com/"+hash);
 	}
 }
