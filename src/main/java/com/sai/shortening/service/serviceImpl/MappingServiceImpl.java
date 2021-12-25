@@ -37,6 +37,6 @@ public class MappingServiceImpl implements MappingService
 	@Override
 	public String formShortURL(String hash)
 	{
-		return new String("https://ll-redirect-service.herokuapp.com/"+hash);
+		return new String("https://ll-api-gateway.herokuapp.com/"+hash);
 	}
 }
