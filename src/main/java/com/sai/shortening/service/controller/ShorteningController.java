@@ -43,4 +43,21 @@ public class ShorteningController
 			return new ResponseEntity<ResponseDTO>(new ResponseDTO(shortURL,longURL,"processed"),HttpStatus.OK);
 		}
 	}
+	
+	@PostMapping(path = "/text")
+	public ResponseEntity<ResponseDTO> shortenText(@RequestBody RequestDTO requestDTO)
+	{
+		String text = requestDTO.getLongURL();
+		
+		if(text == null || text.isEmpty())
+		{
+			return new ResponseEntity<ResponseDTO>(new ResponseDTO(null,null,"no string passed"),HttpStatus.NO_CONTENT);
+		}
+		else
+		{
+			String hash = mappingService.getShortURLHash(text);
+			mappingService.saveHash(hash, text);
+			return new ResponseEntity<ResponseDTO>(new ResponseDTO(hash,text,"processed"),HttpStatus.OK);
+		}
+	}
 }
